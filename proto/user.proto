@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package YourApp.Proto;
+
+option php_namespace = "KonstantinBudylov\\ProtoDefinitions\\Generated";
+option php_metadata_namespace = "KonstantinBudylov\\ProtoDefinitions\\GPBMetadata";
+
+service UserService {
+    rpc GetUser (UserRequest) returns (UserResponse) {}
+    rpc ListUsers (UsersRequest) returns (UsersResponse) {}
+    rpc CreateUser (CreateUserRequest) returns (UserResponse) {}
+}
+
+message UserRequest {
+    int32 id = 1;
+}
+
+message UserResponse {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string created_at = 4;
+}
+
+message UsersRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+}
+
+message UsersResponse {
+    repeated UserResponse users = 1;
+    int32 total = 2;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
