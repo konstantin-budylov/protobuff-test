@@ -15,9 +15,8 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "bash -c 'if [ ! -d \"./src\" ]; then mkdir -p ./src; fi'",
-      "bash -c 'if command -v protoc &> /dev/null; then protoc --php_out=./src -I=./proto ./proto/*.proto; else echo \"protoc not found, skipping code generation\"; fi'"
+      "bash -c 'if [ ! -d \"./src\" ]; then mkdir -p ./src; fi && if command -v protoc &> /dev/null; then protoc --php_out=./src -I=./proto ./proto/*.proto; else echo \"protoc not found, skipping code generation\"; fi'"
     ],
-    "generate": "protoc --php_out=./src -I=./proto ./proto/*.proto"
+    "generate": "if [ ! -d \"./src\" ]; then mkdir -p ./src; fi && protoc --php_out=./src -I=./proto ./proto/*.proto"
   }
 }
